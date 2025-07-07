@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <h2>PWA Icon Generator</h2>
+    <canvas id="canvas" style="border: 1px solid #ccc;"></canvas>
+    <br><br>
+    <button onclick="generateIcons()">Generate Icons</button>
+    <div id="downloads"></div>
+
+    <script>
+        function generateIcons() {
+            const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+            const downloadsDiv = document.getElementById('downloads');
+            downloadsDiv.innerHTML = '';
+            
+            sizes.forEach(size => {
+                const canvas = document.createElement('canvas');
+                canvas.width = size;
+                canvas.height = size;
+                const ctx = canvas.getContext('2d');
+                
+                // Create gradient background
+                const gradient = ctx.createLinearGradient(0, 0, 0, size);
+                gradient.addColorStop(0, '#2563eb');
+                gradient.addColorStop(1, '#1d4ed8');
+                
+                ctx.fillStyle = gradient;
+                ctx.fillRect(0, 0, size, size);
+                
+                // Add rounded corners
+                ctx.globalCompositeOperation = 'destination-in';
+                const radius = size * 0.1;
+                ctx.beginPath();
+                ctx.roundRect(0, 0, size, size, radius);
+                ctx.fill();
+                
+                ctx.globalCompositeOperation = 'source-over';
+                
+                // Add rocket emoji or AW text
+                ctx.fillStyle = 'white';
+                ctx.font = `bold ${size/3}px Arial`;
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                
+                // Try to use emoji, fallback to text
+                const text = '🚀';
+                ctx.fillText(text, size/2, size/2);
+                
+                // Create download link
+                canvas.toBlob(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = `icon-${size}x${size}.png`;
+                    link.textContent = `Download ${size}x${size} icon`;
+                    link.style.display = 'block';
+                    link.style.margin = '5px 0';
+                    
+                    downloadsDiv.appendChild(link);
+                });
+            });
+        }
+        
+        // Generate sample icon on load
+        window.onload = function() {
+            const canvas = document.getElementById('canvas');
+            canvas.width = 192;
+            canvas.height = 192;
+            const ctx = canvas.getContext('2d');
+            
+            const gradient = ctx.createLinearGradient(0, 0, 0, 192);
+            gradient.addColorStop(0, '#2563eb');
+            gradient.addColorStop(1, '#1d4ed8');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 192, 192);
+            
+            ctx.globalCompositeOperation = 'destination-in';
+            ctx.beginPath();
+            ctx.roundRect(0, 0, 192, 192, 19.2);
+            ctx.fill();
+            
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.fillStyle = 'white';
+            ctx.font = 'bold 64px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('🚀', 96, 96);
+        };
+    </script>
+</body>
+</html> 

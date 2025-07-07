@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppWorks Side Project Tracker</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="description" content="追蹤你的 side project 進度和成效">
+    <meta name="theme-color" content="#2563eb">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Project Tracker">
+    
+    <!-- Icons -->
+    <link rel="icon" type="image/png" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    
+    <!-- Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <h1>🚀 AppWorks Side Project Tracker</h1>
+            <p>記錄你的創作旅程</p>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <button class="nav-btn active" data-tab="dashboard">📊 總覽</button>
+            <button class="nav-btn" data-tab="projects">📁 專案</button>
+            <button class="nav-btn" data-tab="add-project">➕ 新增</button>
+            <button class="nav-btn" data-tab="analytics">📈 分析</button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Dashboard Tab -->
+            <section id="dashboard" class="tab-content active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>本週總時數</h3>
+                        <div class="stat-value" id="weeklyHours">0</div>
+                        <div class="stat-unit">小時</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>進行中專案</h3>
+                        <div class="stat-value" id="activeProjects">0</div>
+                        <div class="stat-unit">個</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>完成專案</h3>
+                        <div class="stat-value" id="completedProjects">0</div>
+                        <div class="stat-unit">個</div>
+                    </div>
+                    <div class="stat-card">
+                        <h3>平均成效</h3>
+                        <div class="stat-value" id="avgEffectiveness">0</div>
+                        <div class="stat-unit">分</div>
+                    </div>
+                </div>
+
+                <div class="recent-activity">
+                    <h2>最近活動</h2>
+                    <div id="recentActivities" class="activity-list">
+                        <div class="empty-state">
+                            <p>還沒有任何記錄，開始創建你的第一個專案吧！</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Tab -->
+            <section id="projects" class="tab-content">
+                <div class="projects-header">
+                    <h2>我的專案</h2>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">全部</button>
+                        <button class="filter-btn" data-filter="active">進行中</button>
+                        <button class="filter-btn" data-filter="completed">已完成</button>
+                        <button class="filter-btn" data-filter="paused">暫停</button>
+                    </div>
+                </div>
+                <div id="projectsList" class="projects-list">
+                    <div class="empty-state">
+                        <p>還沒有專案，點擊「新增」來創建第一個專案！</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Add Project Tab -->
+            <section id="add-project" class="tab-content">
+                <div class="form-container">
+                    <h2>🎯 新增 Side Project</h2>
+                    <form id="projectForm" class="project-form">
+                        <div class="form-group">
+                            <label for="projectName">專案名稱 *</label>
+                            <input type="text" id="projectName" required placeholder="輸入專案名稱">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectDescription">專案描述</label>
+                            <textarea id="projectDescription" placeholder="描述你的專案目標和想法" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="projectCategory">類別</label>
+                                <select id="projectCategory">
+                                    <option value="web">Web 開發</option>
+                                    <option value="mobile">Mobile App</option>
+                                    <option value="design">設計</option>
+                                    <option value="content">內容創作</option>
+                                    <option value="business">商業</option>
+                                    <option value="other">其他</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="projectPriority">優先級</label>
+                                <select id="projectPriority">
+                                    <option value="high">高</option>
+                                    <option value="medium" selected>中</option>
+                                    <option value="low">低</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="projectGoal">本週目標</label>
+                            <input type="text" id="projectGoal" placeholder="這週想要達成什麼？">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="expectedHours">預估時數</label>
+                            <input type="number" id="expectedHours" min="1" placeholder="預估需要多少小時">
+                        </div>
+
+                        <button type="submit" class="submit-btn">✨ 創建專案</button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Analytics Tab -->
+            <section id="analytics" class="tab-content">
+                <h2>📊 數據分析</h2>
+                <div class="analytics-grid">
+                    <div class="chart-container">
+                        <h3>時間投入趨勢</h3>
+                        <canvas id="timeChart" width="400" height="200"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>專案類別分布</h3>
+                        <canvas id="categoryChart" width="400" height="200"></canvas>
+                    </div>
+                </div>
+                
+                <div class="insights">
+                    <h3>💡 洞察建議</h3>
+                    <div id="insightsList" class="insights-list">
+                        <p>累積更多數據後，這裡會顯示個人化的建議！</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Time Log Modal -->
+        <div id="timeLogModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>⏰ 記錄時間</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <form id="timeLogForm">
+                    <div class="form-group">
+                        <label for="logDate">日期</label>
+                        <input type="date" id="logDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="logHours">投入時數</label>
+                        <input type="number" id="logHours" min="0.5" step="0.5" required placeholder="小時">
+                    </div>
+                    <div class="form-group">
+                        <label for="logProgress">進度描述</label>
+                        <textarea id="logProgress" placeholder="今天完成了什麼？" rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="logEffectiveness">成效評分 (1-10)</label>
+                        <input type="range" id="logEffectiveness" min="1" max="10" value="5">
+                        <div class="range-labels">
+                            <span>1 (低效)</span>
+                            <span id="effectivenessValue">5</span>
+                            <span>10 (高效)</span>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn">取消</button>
+                        <button type="submit" class="submit-btn">保存記錄</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Project Detail Modal -->
+        <div id="projectDetailModal" class="modal">
+            <div class="modal-content large">
+                <div class="modal-header">
+                    <h3 id="projectDetailTitle">專案詳情</h3>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div id="projectDetailContent" class="project-detail">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install Prompt -->
+    <div id="installPrompt" class="install-prompt hidden">
+        <div class="install-content">
+            <h3>📱 安裝應用程式</h3>
+            <p>將此應用程式安裝到你的設備上，隨時追蹤專案進度！</p>
+            <div class="install-actions">
+                <button id="installBtn" class="install-btn">安裝</button>
+                <button id="dismissInstall" class="dismiss-btn">稍後再說</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script>
+</body>
+</html> 

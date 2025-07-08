@@ -140,6 +140,10 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
+.add-project-btn {
+    margin-left: auto;
+}
+
 /* Main Content */
 .main {
     flex: 1;

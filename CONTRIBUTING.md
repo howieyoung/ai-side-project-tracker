@@ -132,7 +132,7 @@ docs(readme): update installation instructions
 
 - 查看 [Issues](https://github.com/your-username/ai-side-project-tracker/issues) 中的 "good first issue" 標籤
 - 在 [Discussions](https://github.com/your-username/ai-side-project-tracker/discussions) 提問
-- 發送郵件到：your-email@example.com
+- 發送郵件到：howie@protico.io
 
 ## 🙏 貢獻者
 

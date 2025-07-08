@@ -10,7 +10,7 @@
 [![PWA](https://img.shields.io/badge/PWA-Ready-brightgreen.svg)](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps)
 [![Mobile Friendly](https://img.shields.io/badge/Mobile-Friendly-blue.svg)](https://search.google.com/test/mobile-friendly)
 
-[🌐 Live Demo](https://your-username.github.io/ai-side-project-tracker) | [📱 Install as App](#安裝-pwa) | [🐛 Report Bug](https://github.com/your-username/ai-side-project-tracker/issues) | [💡 Request Feature](https://github.com/your-username/ai-side-project-tracker/issues)
+[🌐 Live Demo](https://howieyoung.github.io/ai-side-project-tracker) | [📱 Install as App](#安裝-pwa) | [🐛 Report Bug](https://github.com/your-username/ai-side-project-tracker/issues) | [💡 Request Feature](https://github.com/your-username/ai-side-project-tracker/issues)
 
 </div>
 
@@ -232,9 +232,9 @@ ai-side-project-tracker/
 
 ## 📞 聯絡方式
 
-- **GitHub Issues**: [回報問題或建議](https://github.com/your-username/ai-side-project-tracker/issues)
-- **Email**: your-email@example.com
-- **Twitter**: [@your-handle](https://twitter.com/your-handle)
+- **GitHub Issues**: [回報問題或建議](https://github.com/howieyoung/ai-side-project-tracker/issues)
+- **Email**: howie@protico.io
+- **Twitter**: [@howie0417](https://x.com/howie0417)
 
 ## 📊 專案統計
 
@@ -247,8 +247,6 @@ ai-side-project-tracker/
 
 <div align="center">
 
-**讓我們一起追蹤和實現創作夢想！** 🚀✨
-
-Made with ❤️ by [Your Name](https://github.com/your-username)
+Made with ❤️ by [Howie Young (Founder of Protico.io)](https://github.com/howieyoung)
 
 </div> 

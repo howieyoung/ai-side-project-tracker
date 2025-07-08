@@ -1,5 +1,5 @@
 // Service Worker for PWA
-const CACHE_NAME = 'appworks-project-tracker-v1';
+const CACHE_NAME = 'AI-project-tracker-v1';
 const urlsToCache = [
     './',
     './index.html',

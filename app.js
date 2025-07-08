@@ -270,9 +270,6 @@ class ProjectTracker {
                             <button class="action-btn" onclick="projectTracker.showTimeLogModal('${project.id}')" title="記錄時間">
                                 ⏰
                             </button>
-                            <button class="action-btn" onclick="projectTracker.editProject('${project.id}')" title="編輯">
-                                ✏️
-                            </button>
                         </div>
                     </div>
                     <div class="project-stats">

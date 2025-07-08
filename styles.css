@@ -401,6 +401,10 @@ body {
 }
 
 /* Forms */
+.time-LogForm {
+    padding: 1rem;
+}
+
 .form-container {
     max-width: 600px;
     margin: 0 auto;
@@ -477,7 +481,6 @@ body {
 }
 
 .submit-btn {
-    width: 100%;
     padding: 1rem;
     background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
     color: white;

@@ -1,5 +1,5 @@
 // Service Worker for PWA
-const CACHE_NAME = 'AI-project-tracker-v1';
+const CACHE_NAME = 'AI-project-tracker-v2';
 const urlsToCache = [
     './',
     './index.html',
@@ -21,18 +21,21 @@ self.addEventListener('install', (event) => {
     );
 });
 
-// Fetch event - serve from cache when offline
+// Fetch event - Network First strategy
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches.match(event.request)
+        fetch(event.request)
             .then((response) => {
-                // Return cached version or fetch from network
-                if (response) {
+                // 成功取得網路資源時，更新快取
+                return caches.open(CACHE_NAME).then((cache) => {
+                    cache.put(event.request, response.clone());
                     return response;
-                }
-                return fetch(event.request);
-            }
-        )
+                });
+            })
+            .catch(() => {
+                // 如果網路失敗，回傳快取內容
+                return caches.match(event.request);
+            })
     );
 });
 

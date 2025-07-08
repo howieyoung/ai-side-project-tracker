@@ -142,6 +142,8 @@ body {
 
 .add-project-btn {
     margin-left: auto;
+    background-color: #ed2a67;
+    color: white;
 }
 
 /* Main Content */
